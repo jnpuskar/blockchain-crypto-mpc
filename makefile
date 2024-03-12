@@ -33,7 +33,8 @@ COMMON_CPPFLAGS = \
 	-Wno-switch-enum \
 	-Werror \
 	-mpclmul \
-	-std=c++0x
+	-std=c++0x \
+	-Wno-deprecated-declarations
 
 COMMON_LDFLAGS = \
 	-s

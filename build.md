@@ -106,3 +106,5 @@ JNI Error:
 `fatal error: jni.h: No such file or directory`
 
 If you receive this error, then you need to define the JAVA_HOME environment variable. It is used in the [makefile](https://github.com/unbound-tech/blockchain-crypto-mpc/blob/master/makefile).
+To do so you can use the below cmd:
+export JAVA_HOME=`type -p java|xargs readlink -f|xargs dirname|xargs dirname`
