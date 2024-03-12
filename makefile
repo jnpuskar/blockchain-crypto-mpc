@@ -162,6 +162,6 @@ mpc_crypto_bench: $(BENCH_OBJ) libmpc_crypto.so
 .PHONY: clean
 
 clean:
-	rm -f $(LIB_OBJ) $(TEST_OBJ) mpc_crypto_test mpc_crypto_bench libmpc_crypto.so src/utils/precompiled.h.gch
+	rm -f $(LIB_OBJ) $(TEST_OBJ) $(BENCH_OBJ) mpc_crypto_test mpc_crypto_bench libmpc_crypto.so src/utils/precompiled.h.gch
 	
 .DEFAULT_GOAL := mpc_crypto_bench
