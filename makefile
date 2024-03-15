@@ -24,20 +24,39 @@
 COMMON_INCLUDES = \
 	-I include
 
-COMMON_CPPFLAGS = \
-	-O2 \
-	-fPIC \
-	-fno-strict-aliasing \
-	-Wno-unused \
-	-Wno-switch \
-	-Wno-switch-enum \
-	-Werror \
-	-mpclmul \
-	-std=c++0x \
-	-Wno-deprecated-declarations
+# If the DEBUG variable is set, compile with debugging flags, otherwise with optimization flags
+ifeq ($(DEBUG), 1)
+    COMMON_CPPFLAGS = \
+        -g \
+        -O0 \
+        -fPIC \
+        -fno-strict-aliasing \
+        -Wno-unused \
+        -Wno-switch \
+        -Wno-switch-enum \
+        -Werror \
+        -mpclmul \
+        -std=c++0x \
+        -Wno-deprecated-declarations
+else
+    COMMON_CPPFLAGS = \
+        -O2 \
+        -fPIC \
+        -fno-strict-aliasing \
+        -Wno-unused \
+        -Wno-switch \
+        -Wno-switch-enum \
+        -Werror \
+        -mpclmul \
+        -std=c++0x \
+        -Wno-deprecated-declarations
+endif
 
-COMMON_LDFLAGS = \
-	-s
+ifeq ($(DEBUG), 1)
+	COMMON_LDFLAGS = -g
+else	
+	COMMON_LDFLAGS = -s
+endif
 
 #---------------- LIB -------------------
 	
@@ -164,4 +183,4 @@ mpc_crypto_bench: $(BENCH_OBJ) libmpc_crypto.so
 clean:
 	rm -f $(LIB_OBJ) $(TEST_OBJ) $(BENCH_OBJ) mpc_crypto_test mpc_crypto_bench libmpc_crypto.so src/utils/precompiled.h.gch
 	
-.DEFAULT_GOAL := mpc_crypto_bench
+.DEFAULT_GOAL := mpc_crypto_test
